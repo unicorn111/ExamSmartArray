@@ -26,6 +26,6 @@ public class DistinctDecorator extends SmartArrayDecorator{
 
     @Override
     public int size() {
-        return 0;
+        return smartArray.size();
     }
 }
