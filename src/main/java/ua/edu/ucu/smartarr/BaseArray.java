@@ -2,11 +2,10 @@ package ua.edu.ucu.smartarr;
 
 // Base array for decorators
 public class BaseArray implements SmartArray {
-    BaseArray array;
     Integer[] cop;
     public BaseArray(Integer[] integers){
         this.cop = integers;
-        /*this.array = new BaseArray(integers);*/
+        
     }
     public int get(int i){
         return cop[i];
