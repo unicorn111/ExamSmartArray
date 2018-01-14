@@ -9,9 +9,11 @@ public class SortDecorator extends SmartArrayDecorator{
         super(smartArray);
         for (int i=0;i < smartArray.size();i++){
             for (int j=0;i < smartArray.size();i++){
-                Integer num = cmp.compare((Object) smartArray.get(i), (Object) smartArray.get(j));
+                Integer num = cmp.compare((Object) smartArray.toArray()[i], (Object) smartArray.toArray()[j]);
                 if (num < 0){
-                    smartArray.delete(smartArray.get(i));
+                    Object c = smartArray.toArray()[j];
+                    smartArray.toArray()[j] = smartArray.toArray()[i];
+                    smartArray.toArray()[i] = c;
                 }
             }
 
