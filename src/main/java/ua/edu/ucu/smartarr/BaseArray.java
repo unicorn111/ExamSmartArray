@@ -1,27 +1,43 @@
 package ua.edu.ucu.smartarr;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 // Base array for decorators
 public class BaseArray implements SmartArray {
-    Integer[] cop;
-    public BaseArray(Integer[] integers){
-        this.cop = integers;
-        
+    Object[] arr;
+    ArrayList<Object> ad_arr;
+    public BaseArray(Object[] integers){
+        this.arr = integers;
+        this.ad_arr = new ArrayList<>();
     }
-    public int get(int i){
-        return cop[i];
-    }
-    public BaseArray delete(Integer num){
-        for (int i=0; i<=cop.length; i++){
-            if (cop[i] == num){
-                cop[i] = null;
+
+    public Object[] delete(Integer num){
+        for (int i=0; i < arr.length; i++){
+            if (arr[i] == num){
+                this.rem(i, arr);
             }
         }
-        return new BaseArray(cop);
+        return arr;
     }
+
+    public static Object[] rem(int index, Object[] array) {
+        Object[] newArray = new Object[array.length - 1];
+        for (int i = 0; i < array.length; i++) {
+            if (index > i) {
+                newArray[i] = array[i];
+            } else if(index < i) {
+                newArray[i - 1] = array[i];
+            }
+        }
+        return newArray;
+    }
+
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return arr;
     }
 
     @Override
@@ -31,8 +47,7 @@ public class BaseArray implements SmartArray {
 
     @Override
     public int size() {
-        return cop.length;
+        return arr.length;
     }
 }
-
 
