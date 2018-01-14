@@ -11,17 +11,17 @@ public class FilterDecorator extends SmartArrayDecorator{
     public FilterDecorator(BaseArray smartArray, MyPredicate pr) {
         super(smartArray);
         this.pr = pr;
-        for (int i=0;i < smartArray.size();i++){
-            boolean numb = pr.test(smartArray.get(i));
+        for (Object o: smartArray.toArray()){
+            boolean numb = pr.test(o);
             if (numb == false){
-                smartArray.delete(smartArray.get(i));
+                smartArray.delete((Integer) o);
             }
         }
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return smartArray.toArray();
     }
 
     @Override
