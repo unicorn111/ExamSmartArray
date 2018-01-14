@@ -5,18 +5,29 @@ public class DistinctDecorator extends SmartArrayDecorator{
 
     public DistinctDecorator(BaseArray smartArray) {
         super(smartArray);
-        for (int i=0;i < smartArray.size();i++){
-            for (int j=0;i < smartArray.size();i++){
-                Integer n1 = (Integer)smartArray.get(i);
-                if (n1.equals(smartArray.get(j)) == false){
-                    smartArray.delete(smartArray.get(i));
+        for (Object o: smartArray.toArray()){
+            if (this.same(smartArray, o) == true){
+                smartArray.delete((Integer) o);
                 }
             }
-    }}
+    }
+
+    public boolean same(BaseArray smartArray, Object o){
+        int counter = 0;
+        for (Object ob : smartArray.toArray()) {
+            if (o.toString().equals(ob.toString())) {
+                counter += 1;
+            }
+        }
+        if (counter >=2){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return smartArray.toArray();
     }
 
     @Override
